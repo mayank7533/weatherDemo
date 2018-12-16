@@ -10,8 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
-import os
 
+import os
+from mongoengine import *
+
+
+connect('engine')
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -54,7 +58,7 @@ ROOT_URLCONF = 'demo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['home/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -99,6 +103,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+MONGODB_DATABASES ={
+    'default' : {
+        'name' : "engine",
+        'host' : "localhost",
+        "port" : "27017",
+        "tz_aware" : "27017",
+    }
+}
+
+
+db = 'default'
+
+connect(
+    db=MONGODB_DATABASES[db]['name'],
+    host=MONGODB_DATABASES[db]['host'],
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

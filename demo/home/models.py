@@ -1,3 +1,9 @@
 from django.db import models
+from mongoengine import *
 
-# Create your models here.
+class Data(Document):
+    year=IntField()
+    month=IntField()
+    day=IntField()
+    actual=IntField()
+    predicted=IntField()
