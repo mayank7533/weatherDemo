@@ -3,4 +3,5 @@ from home import views
 
 urlpatterns = [
 url(r'visuals/', views.visuals,name='visuals'),
+
 ]

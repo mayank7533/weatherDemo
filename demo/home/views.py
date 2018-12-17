@@ -13,7 +13,12 @@ def showData(request):
     month=request.GET['month']
     year=request.GET['year']
     data=Data.objects(month=month,year=year)
-    print(data)
+    template=loader.get_template('home/showData.html')
+    context={}
+    context['data']=data
+    context['year']=year
+    context['month']=month
+    return HttpResponse(template.render(context,request))
 
 
 def visuals(request):
