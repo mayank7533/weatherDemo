@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Data visualization</h2>
+  <p>Actual vs predicted data for the {{month}} month of the year {{year}}</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Predicted Temperature</th>
+        <th>Actual Temperature</th>
+      </tr>
+    </thead>
+    <tbody>
+     {%for detail in data%}
+      <tr>
+        <td>{{detail.day}}/{{month}}/{{year}}</td>
+        <td>{{detail.actual}}</td>
+        <td>{{detail.predicted}}</td>
+      </tr>
+     {%endfor%}
+    </tbody>
+  </table>
+</div>
+
+
+</body>
+</html>

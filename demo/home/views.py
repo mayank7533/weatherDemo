@@ -5,17 +5,32 @@ from django.template import loader
 import os
 
 def index(request):
+    months = []
+    for i in range(12):
+        months.append(i + 1)
     template=loader.get_template('home/index.html')
-    return HttpResponse(template.render({},request))
+    context={}
+    context['months']=months
+    return HttpResponse(template.render(context,request))
 
 
 def showData(request):
     month=request.GET['month']
     year=request.GET['year']
     data=Data.objects(month=month,year=year)
+    print(data)
+    details=[]
+
+    for row in data:
+        detail = {}
+        detail['day']=row.day
+        detail['actual']=row.actual
+        detail['predicted']=row.predicted
+        details.append(detail)
     template=loader.get_template('home/showData.html')
     context={}
-    context['data']=data
+    print(details)
+    context['data']=details
     context['year']=year
     context['month']=month
     return HttpResponse(template.render(context,request))
